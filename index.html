@@ -157,6 +157,7 @@
       color: var(--text-soft);
       line-height: 1.95;
       letter-spacing: 0.2px;
+      white-space: pre-line;
     }
 
     .btn-row {
@@ -338,6 +339,72 @@
       letter-spacing: 0.3px;
     }
 
+    /* LOVE GATE FIXED */
+    .gate-box {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(18px);
+      border-radius: 32px;
+      padding: 34px 22px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gif-frame {
+      width: 100%;
+      max-width: 320px;
+      height: 260px;
+      margin: 0 auto 20px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gif-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .kitty-caption {
+      margin-top: 12px;
+      color: #ffd6e0;
+      font-weight: 600;
+      min-height: 26px;
+    }
+
+    .choice-area {
+      position: relative;
+      height: 140px;
+      max-width: 420px;
+      margin: 18px auto 0;
+    }
+
+    .choice-area button {
+      position: absolute;
+      min-width: 120px;
+    }
+
+    #yesBtn {
+      left: 60px;
+      top: 40px;
+    }
+
+    #noBtn {
+      right: 60px;
+      top: 40px;
+    }
+
     @media (max-width: 768px) {
       .hero p, .section-sub, .letter-box, .final-message p {
         font-size: 0.98rem;
@@ -361,6 +428,48 @@
         padding: 12px 18px;
         font-size: 0.92rem;
       }
+
+      .gate-box {
+        padding: 28px 18px;
+      }
+
+      .gif-frame {
+        max-width: 280px;
+        height: 220px;
+      }
+
+      .choice-area {
+        height: 150px;
+        max-width: 300px;
+      }
+
+      #yesBtn {
+        left: 18px;
+        top: 45px;
+      }
+
+      #noBtn {
+        right: 18px;
+        top: 45px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .choice-area {
+        max-width: 260px;
+      }
+
+      #yesBtn, #noBtn {
+        min-width: 105px;
+      }
+
+      #yesBtn {
+        left: 10px;
+      }
+
+      #noBtn {
+        right: 10px;
+      }
     }
   </style>
 </head>
@@ -378,22 +487,23 @@
 
   <!-- LOVE GATE -->
   <div id="loveGate" style="position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(15,12,41,0.96), rgba(48,43,99,0.96), rgba(36,36,62,0.96)); padding:20px;">
-    <div style="width:100%; max-width:720px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); backdrop-filter:blur(18px); border-radius:32px; padding:34px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.28); position:relative; overflow:hidden;">
+    <div class="gate-box">
       <div class="tag">One very important question 💖</div>
       <h2 style="font-size:clamp(2.2rem,5vw,3.8rem); color:#ffd6e0; margin-bottom:14px; font-family:'Dancing Script', cursive;">Do you love me, Bhawna? 🥺</h2>
-      <p style="max-width:560px; margin:0 auto 24px; line-height:1.8; color:rgba(255,255,255,0.92);">
+      <p style="max-width:560px; margin:0 auto 18px; line-height:1.8; color:rgba(255,255,255,0.92);">
         Before you enter this little world… there’s only one correct answer 💗
       </p>
 
-      <div id="kittyBox" style="display:none; margin:0 auto 20px; max-width:320px;">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Q1aWFydG56aXFlMnF3bG8wcTVlczRha2YzMWp6Y3Jld2xob3I4YiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ICOgUNjpvO0PC/giphy.gif" alt="cute kitty" style="width:100%; border-radius:24px; border:1px solid rgba(255,255,255,0.14); box-shadow:0 10px 30px rgba(0,0,0,0.2);">
-        
-        <p id="kittyText" style="margin-top:12px; color:#ffd6e0; font-weight:600;">Aww no no... wrong choice 😼💗</p>
+      <!-- FIXED GIF BOX -->
+      <div class="gif-frame">
+        <img id="kittyGif" src="4.gif" alt="cute gif">
       </div>
+      <p id="kittyText" class="kitty-caption">Choose carefully 😼💗</p>
 
-      <div id="choiceArea" style="position:relative; height:120px; max-width:420px; margin:0 auto;">
-        <button id="yesBtn" class="btn btn-primary" style="position:absolute; left:70px; top:28px; min-width:120px;">Yes 💘</button>
-        <button id="noBtn" class="btn btn-secondary" style="position:absolute; right:70px; top:28px; min-width:120px;">No 🙈</button>
+      <!-- BUTTON AREA -->
+      <div class="choice-area" id="choiceArea">
+        <button id="yesBtn" class="btn btn-primary">Yes 💘</button>
+        <button id="noBtn" class="btn btn-secondary">No 🙈</button>
       </div>
     </div>
   </div>
@@ -536,7 +646,7 @@
     const loveGate = document.getElementById('loveGate');
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
-    const kittyBox = document.getElementById('kittyBox');
+    const kittyGif = document.getElementById('kittyGif');
     const kittyText = document.getElementById('kittyText');
     const choiceArea = document.getElementById('choiceArea');
     const loveCounter = document.getElementById('loveCounter');
@@ -552,8 +662,12 @@
       "Aww no... don’t do that 🥺💗",
       "Bhondu, that’s not the right answer 😽",
       "Try again cutie 💖",
-      "Kitty says only one answer is allowed 🐾"
+      "Kitty says only one answer is allowed 🐾",
+      "No button sirf formality hai 😌💘"
     ];
+
+    // OFFLINE GIFS
+    const reactionGifs = ["1.jpeg", "2.gif", "3.gif", "5.jpeg", "6.gif", "7.gif"];
 
     const letterText = `
 Mujhe nahi pata ki tu ye sab dekh ke kya feel karegi…
@@ -569,7 +683,7 @@ wo simple thi, par mere liye bohot special hain.
 
 Aur shayad isi liye tu itni easily bhulti bhi nahi.
 
-Mai bas itna kehna chahta hu 
+Mai bas itna kehna chahta hu... 
 mujhe tu pasand hai,
 sach mai,
 aur normal se zyada.
@@ -595,9 +709,15 @@ I love you.
 Shayad jitna bolta hu usse bhi zyada.
 `;
 
+    function getRandomGif() {
+      const randomIndex = Math.floor(Math.random() * reactionGifs.length);
+      return reactionGifs[randomIndex];
+    }
+
     function moveNoButton() {
       const maxX = choiceArea.clientWidth - noBtn.offsetWidth;
       const maxY = choiceArea.clientHeight - noBtn.offsetHeight;
+
       const x = Math.max(0, Math.random() * maxX);
       const y = Math.max(0, Math.random() * maxY);
 
@@ -605,7 +725,8 @@ Shayad jitna bolta hu usse bhi zyada.
       noBtn.style.top = y + 'px';
       noBtn.style.right = 'auto';
 
-      kittyBox.style.display = 'block';
+      // change gif from intro to reaction gif
+      kittyGif.src = getRandomGif();
       kittyText.textContent = noMessages[Math.floor(Math.random() * noMessages.length)];
     }
 
@@ -622,7 +743,11 @@ Shayad jitna bolta hu usse bhi zyada.
     yesBtn.addEventListener('click', async () => {
       createHeartBurst(window.innerWidth / 2, window.innerHeight / 2, 40);
 
-      window.scrollTo(0, 0);
+      // Always start from top
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
 
       loveGate.style.transition = 'opacity 0.8s ease';
       loveGate.style.opacity = '0';
